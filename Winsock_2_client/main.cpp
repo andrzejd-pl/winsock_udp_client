@@ -75,7 +75,7 @@ int main() {
 		UDPSocket Socket;
 		pakiet data(1, 1, 5, 1);
 
-		char buffer[2];
+		char buffer[3];
 		std::string p = data.convertToSend();
 
 		Socket.SendTo("127.0.0.1", 100, p.c_str(), p.size());
