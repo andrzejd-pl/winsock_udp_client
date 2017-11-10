@@ -31,16 +31,16 @@ void UDPSocket::SendTo(sockaddr_in& address, const char* buffer, int len, int fl
 		throw std::system_error(WSAGetLastError(), std::system_category(), "sendto failed");
 }
 
-sockaddr_in UDPSocket::RecvFrom(char* buffer, int len, int flags) {
+sockaddr_in UDPSocket::RecvFrom(char* buff, int len, int flags) {
 	sockaddr_in from;
 	int size = sizeof(from);
-	int ret = recvfrom(sock, buffer, len, flags, reinterpret_cast<SOCKADDR *>(&from), &size);
+	int ret = recvfrom(sock, buff, len, flags, reinterpret_cast<SOCKADDR *>(&from), &size);
 	if (ret < 0)
 		throw std::system_error(WSAGetLastError(), std::system_category(), "recvfrom failed");
 
-	//make the buffer zero terminated
+	//make the buff zero terminated
 
-	buffer[ret] = 0;
+	buff[ret] = 0;
 	return from;
 }
 

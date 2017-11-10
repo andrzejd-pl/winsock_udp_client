@@ -17,7 +17,7 @@ public:
 		this->ack = ack;
 	}
 
-	pakiet(char *rawData, unsigned short size) {
+	pakiet(char rawData[], unsigned short size) {
 		if (size > 2) throw std::exception("To large buffor!!!");
 		
 		unsigned short buff = rawData[0];
@@ -27,7 +27,7 @@ public:
 
 		buff = rawData[1];
 		id |= ((buff >> 5) & 0x07);
-		ack |= ((buff >> 4) & 0x01);
+		ack = 0 | ((buff >> 4) & 0x01);
 	}
 
 	std::string convertToSend() {
@@ -78,7 +78,7 @@ int main() {
 		char buffer[2];
 		std::string p = data.convertToSend();
 
-		Socket.SendTo("127.0.0.1", 2, p.c_str(), p.size());
+		Socket.SendTo("127.0.0.1", 100, p.c_str(), p.size());
 		Socket.RecvFrom(buffer, 2);
 		pakiet rt(buffer, 2);
 		std::cout << rt.getOperation() << " " << rt.getResponse() << " " << rt.getId() << " " << rt.getAckFlag() << std::endl;
