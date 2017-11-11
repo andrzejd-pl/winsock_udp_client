@@ -31,6 +31,7 @@ void UDPSocket::SendTo(sockaddr_in& address, const char* buffer, int len, int fl
 		throw std::system_error(WSAGetLastError(), std::system_category(), "sendto failed");
 }
 
+// buffer musi byc o 1 wiekszy, bo to co ta funkcja zwraca w argumencie buff modyfikuje pole len+1
 sockaddr_in UDPSocket::RecvFrom(char* buff, int len, int flags) {
 	sockaddr_in from;
 	int size = sizeof(from);
@@ -40,6 +41,7 @@ sockaddr_in UDPSocket::RecvFrom(char* buff, int len, int flags) {
 
 	//make the buff zero terminated
 
+	//  ret = maksymalnie len+1
 	buff[ret] = 0;
 	return from;
 }
