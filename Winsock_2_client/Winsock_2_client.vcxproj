@@ -112,10 +112,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Packet.cpp" />
     <ClCompile Include="UDPSocket.cpp" />
     <ClCompile Include="WSASession.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Packet.h" />
     <ClInclude Include="UDPSocket.h" />
     <ClInclude Include="WSASession.h" />
   </ItemGroup>
