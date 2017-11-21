@@ -14,7 +14,7 @@ private:
 	unsigned short id;
 
 
-	Packet(const unsigned short operation, const unsigned short response, const unsigned short id, const unsigned short ack, const unsigned short error, const unsigned short overflow, const unsigned short bad_respone, const unsigned short bad_client)
+	Packet(const unsigned short operation, const unsigned short response, const unsigned short id)
 		: operation(operation),
 		response(response),
 		id(id) {}

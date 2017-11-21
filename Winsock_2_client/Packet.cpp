@@ -57,5 +57,4 @@ Packet::PacketBuilder Packet::PacketBuilder::set_id(const unsigned short id) {
 
 Packet Packet::PacketBuilder::build() {
 	return Packet(operation, response, id);
-
 }

@@ -20,15 +20,16 @@ int main() {
 		std::string p = data.convertToSend();
 
 		Socket.SendTo("127.0.0.1", 100, p.c_str(), p.size());
-		Socket.RecvFrom(buffer, 2);
+		while (true) {
+			Socket.RecvFrom(buffer, 2);
 
-		Packet packet = Packet(buffer, 2);
+			Packet packet = Packet(buffer, 2);
 
-		std::cout << "Packet response contains fields: \n\t" << "operation - " << packet.getOperation() <<
-			"\n\t" << "response - " << packet.getResponse() <<
-			"\n\t" << "id - " << packet.getId() <<
-			std::endl;
-
+			std::cout << "Packet response contains fields: \n\t" << "operation - " << packet.getOperation() <<
+				"\n\t" << "response - " << packet.getResponse() <<
+				"\n\t" << "id - " << packet.getId() <<
+				std::endl;
+		}
 	}
 	catch (std::exception& ex) {
 		std::cout << ex.what();
